@@ -1,0 +1,46 @@
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class FIRST
+{
+private:
+	string str_one;
+public:
+	FIRST(string str)
+	{
+		cout << "FIRST" << endl;
+		str_one = str;
+	}
+	virtual ~FIRST()
+	{
+		cout << "~FIRST()" << endl;
+	}
+};
+class SECOND : public FIRST
+{
+private:
+	string str_two;
+public:
+	SECOND(string str1, string str2)
+		: FIRST(str1)
+	{
+		cout << "SECOND" << endl;
+		str_two = str2;
+	}
+	~SECOND()
+	{
+		cout << "~SECOND()" << endl;
+	}
+};
+
+int main()
+{
+	FIRST* ptr = new SECOND("simple", "complex");
+
+	delete ptr;
+
+	return 0;
+}

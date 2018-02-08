@@ -1,0 +1,44 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+class POINT
+{
+private:
+	int xpos, ypos;
+public:
+	POINT(int x = 0, int y = 0)
+		: xpos(x), ypos(y) {
+	}
+
+	void show_position() const
+	{
+		cout << '[' << xpos << ", " << ypos << ']' << endl;
+	}
+
+	POINT operator+(const POINT& ref)
+	{
+		POINT pos(xpos + ref.xpos, ypos+ ref.ypos);
+		return pos;
+	}
+
+	friend ostream& operator<<(ostream& os, const POINT& pos);
+};
+
+ostream& operator<<(ostream& os, const POINT& pos)
+{
+	os << '[' << pos.xpos << ", " << pos.ypos << ']';
+	return os;
+}
+
+int main() {
+	
+	POINT pos1(3, 4);
+	POINT pos2(10, 20);
+	POINT pos3 = pos1 + pos2;
+
+	cout << pos3;
+
+	return 0;
+}

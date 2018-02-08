@@ -1,0 +1,63 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+class PERSON
+{
+public:
+	virtual void sleep()
+	{
+		cout << "person sleeping" << endl;
+	}
+};
+
+class STUDENT : public PERSON
+{
+public:
+	virtual void sleep() {
+		cout << "student sleeping" << endl;
+	}
+	virtual void study()
+	{
+		cout << "studying" << endl;
+	}
+};
+
+class PART_TIME_STUDENT : public STUDENT
+{
+public:
+	void sleep() {
+		cout << "part-time stuendt sleeping!" << endl;
+	}
+	void study() {
+		cout << "part-time student studying" << endl;
+	}
+	void work()
+	{
+		cout << "working" << endl;
+	}
+};
+
+int main()
+{
+	PERSON* ptr = new PERSON();
+	PERSON* ptr1 = new STUDENT();
+	PERSON* ptr2 = new PART_TIME_STUDENT();
+	STUDENT* ptr3 = new PART_TIME_STUDENT();
+
+	ptr->sleep();
+	ptr1->sleep();
+	//ptr1->study();
+	ptr2->sleep();
+	//ptr2->work();
+	ptr3->study();
+	//ptr3->work();
+
+	delete ptr;
+	delete ptr1;
+	delete ptr2, ptr3;
+
+	return 0;
+
+}

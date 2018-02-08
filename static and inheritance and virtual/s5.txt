@@ -1,0 +1,23 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+class EMPLOYEE
+{
+private:
+	int age;
+public:
+	EMPLOYEE(int age)
+		: age(age)
+	{
+
+	}
+	void show_your_name() const{}
+	virtual int get_pay() const = 0;
+	virtual void show_salary_info() const = 0;
+};
+
+int main() {
+	//EMPLOYEE emp(19);
+}

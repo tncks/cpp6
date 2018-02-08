@@ -1,0 +1,61 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+class POINT
+{
+private:
+	int xpos, ypos;
+public:
+	POINT(int x = 0, int y = 0)
+		:xpos(x), ypos(y)
+	{
+		cout << "POINT created!" << endl;
+	}
+	~POINT()
+	{
+		cout << "POINT deleted!" << endl;
+	}
+
+	POINT operator+(const POINT& pos) const
+	{
+		return POINT(xpos + pos.xpos, ypos + pos.ypos);
+	}
+
+	friend ostream& operator<<(ostream& os, const POINT& pos);
+
+};
+
+ostream& operator<<(ostream& os, const POINT& pos)
+{
+	os << '[' << pos.xpos << ", " << pos.ypos << ']' << endl;
+	return os;
+}
+
+class ADDER
+{
+public:
+	int operator()(const int& n1, const int& n2)
+	{
+		return n1 + n2;
+	}
+	double operator()(const double& d1, const double& d2)
+	{
+		return d1 + d2;
+	}
+	POINT operator()(const POINT& p1, const POINT& p2)
+	{
+		return (p1 + p2);
+	}
+};
+
+int main()
+{
+	ADDER adder;
+	cout << adder(1, 3) << endl;
+	cout << adder(1.5, 3.6) << endl;
+	cout << adder(POINT(3, 4), POINT(7, 9));
+
+	return 0;
+}

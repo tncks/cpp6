@@ -1,0 +1,32 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+class test
+{
+public:
+	test()
+	{
+		cout << "test " << endl;
+	}
+	~test()
+	{
+		cout << "test destroyed" << endl;
+	}
+};
+
+int main()
+{
+	cout << "malloc" << endl;
+	test* m_ptr = (test*)malloc(sizeof(test));
+	free(m_ptr);
+	cout << endl << endl;
+
+	cout << "new" << endl;
+	test* n_ptr = new test;
+	delete n_ptr;
+	cout << endl;
+
+	return 0;
+}

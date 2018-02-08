@@ -1,0 +1,30 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+class price
+{
+private:
+	const static int p1 = 130;
+	const static int t2 = 530;
+
+public:
+	const static int a3 = 2530;
+	const static int s4 = 1230;
+
+	friend int main();
+};
+
+int main()
+{
+	
+
+	cout << "p1 : " << price::p1 << endl;
+	cout << "t2 : " << price::t2 << endl;
+
+	cout << "a3 : " << price::a3 << endl;
+	cout << "s4 : " << price::s4 << endl;
+
+	return 0;
+}

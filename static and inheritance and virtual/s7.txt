@@ -1,0 +1,68 @@
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class FIRST
+{
+public:
+	void FIRST_func()
+	{
+		cout << "FIRST func" << endl;
+	}
+	virtual void sim_func()
+	{
+		cout << "FIRST's sim func" << endl;
+	}
+};
+
+class SECOND : public FIRST
+{
+public:
+	void SECOND_func()
+	{
+		cout << "SECOND func()" << endl;
+	}
+	virtual void sim_func()
+	{
+		cout << "SECOND's sim func" << endl;
+	}
+};
+
+class THIRD : public SECOND
+{
+public:
+	void THIRD_func()
+	{
+		cout << "THIRD func()" << endl;
+	}
+	virtual void sim_func()
+	{
+		cout << "THIRD's sim func" << endl;
+	}
+};
+
+int main()
+{
+	THIRD obj;
+	obj.FIRST_func();
+	obj.SECOND_func();
+	obj.THIRD_func();
+	obj.sim_func();
+
+	cout << endl;
+
+	SECOND& sref = obj;
+	sref.FIRST_func();
+	sref.SECOND_func();
+	sref.sim_func();
+
+	cout << endl;
+
+	FIRST& fref = obj;
+	fref.FIRST_func();
+	fref.sim_func();
+
+	return 0;
+}

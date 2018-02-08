@@ -1,0 +1,52 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+class SIMPLE
+{
+private:
+	static int sim_obj_count;
+public:
+	SIMPLE()
+	{
+		sim_obj_count++;
+		cout << "SIM" << sim_obj_count << " 锅 积己" << endl;
+	}
+};
+int SIMPLE::sim_obj_count = 0;
+
+class COMPLEX
+{
+private:
+	static int com_obj_count;
+public:
+	COMPLEX()
+	{
+		com_obj_count++;
+		cout << "COM" << com_obj_count << " 锅 积己" << endl;
+	}
+	COMPLEX(COMPLEX& copy)
+	{
+		com_obj_count++;
+		cout << "COM" << com_obj_count << " 锅掳 积己" << endl;
+	}
+};
+int COMPLEX::com_obj_count = 0;
+
+int main()
+{
+	SIMPLE sim1;
+	SIMPLE sim2;
+
+	COMPLEX com1;
+	COMPLEX com2 = com1;
+
+	COMPLEX();
+
+	cout << endl;
+
+	
+
+	return 0;
+}

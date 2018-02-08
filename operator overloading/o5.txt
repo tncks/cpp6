@@ -1,0 +1,30 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+class TEST
+{
+private:
+	int t1, t2, t3;
+
+public:
+	TEST(int n1 = 3, int n2 = 4, int n3 = 5)
+		: t1(n1), t2(n2), t3(n3) {
+
+	}
+
+	operator int() //형변환 연산자
+	{
+		return t2;
+	}
+};
+
+int main()
+{
+	TEST T;
+	int n = T + 30;
+	printf("%d", n);
+
+	return 0;
+}

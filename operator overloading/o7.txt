@@ -1,0 +1,29 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+class POINT
+{
+private:
+	int x, y;
+public:
+	POINT(int n1, int n2)
+		: x(n1), y(n2)
+	{
+
+	}
+	void print_xy();
+};
+inline void POINT::print_xy()
+{
+	cout << x << ", " << y << endl;
+}
+
+int main()
+{
+	POINT test(3, 5);
+	test.print_xy();
+
+	return 0;
+}

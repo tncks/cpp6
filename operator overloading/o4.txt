@@ -1,0 +1,99 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+class SORT_RULE
+{
+public:
+	virtual bool operator()(int n1, int n2) const = 0;
+};
+
+class ASCENDING_SORT : public SORT_RULE
+{
+public:
+	bool operator()(int n1, int n2) const
+	{
+		return n1 > n2 ? true : false;
+	}
+
+};
+
+class DESCENDING_SORT : public SORT_RULE
+{
+	bool operator()(int n1, int n2) const
+	{
+		return n1 < n2 ? true : false;
+	}
+};
+
+class DATA_STORAGE
+{
+private:
+	int* arr;
+	int idx;
+	const int MAX_LEN;
+public:
+	DATA_STORAGE(int arr_len)
+		: idx(0), MAX_LEN(arr_len)
+	{
+		arr = new int[MAX_LEN];
+	}
+
+	void ADD_DATA(int n)
+	{
+		if (MAX_LEN <= idx)
+		{
+			cout << "²ËÂü" << endl;
+			return;
+		}
+
+		arr[idx++] = n;
+	}
+
+	void show_all_data()
+	{
+		for (int i = 0; i < idx; i++)
+		{
+			cout << arr[i] << ' ';
+		}
+		cout << endl;
+	}
+	void sort_data(const SORT_RULE& functor)
+	{
+		//bubble_sort
+		for (int i = 0; i < (idx - 1); i++)
+		{
+			for (int j = 0; j < (idx - 1); j++)
+			{
+				if (functor(arr[j], arr[j + 1]))
+				{
+					//swap(arr[j], arr[j+1]);
+					int temp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
+				}
+			}
+		}
+	}
+};
+
+int main()
+{
+	DATA_STORAGE storage(5);
+	storage.ADD_DATA(40);
+	storage.ADD_DATA(30);
+	storage.ADD_DATA(50);
+	storage.ADD_DATA(20);
+	storage.ADD_DATA(10);
+
+	storage.sort_data(ASCENDING_SORT());
+	storage.show_all_data();
+
+	cout << endl;
+
+	storage.sort_data(DESCENDING_SORT());
+	storage.show_all_data();
+
+	return 0;
+}
